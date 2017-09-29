@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2015 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +17,9 @@
     <string name="app_name">Basic Espresso sample</string>
     <string name="hello_world">Hello Espresso!</string>
     <string name="change_text">Change text</string>
+    <string name="text_with_visibility">Hello strangers</string>
+    <string name="enable_visibility">Enable visibility</string>
+    <string name="disable_visibility">Disable visibility</string>
     <string name="type_something">type something…</string>
     <string name="open_activity_and_change_text">Open activity and change text</string>
 </resources>

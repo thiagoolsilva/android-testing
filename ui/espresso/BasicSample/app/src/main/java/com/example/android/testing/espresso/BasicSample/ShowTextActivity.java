@@ -16,18 +16,25 @@
 
 package com.example.android.testing.espresso.BasicSample;
 
-import com.google.common.base.Strings;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.common.base.Strings;
 
 /**
  * A simple {@link Activity} that shows a message.
  */
 public class ShowTextActivity extends Activity {
+
+    private Button enableBtn;
+    private Button disablebtn;
+    private TextView labelMessage;
+
 
     // The name of the extra data sent through an {@link Intent}.
     public final static String KEY_EXTRA_MESSAGE =
@@ -42,12 +49,29 @@ public class ShowTextActivity extends Activity {
         Intent intent = getIntent();
         String message = Strings.nullToEmpty(intent.getStringExtra(KEY_EXTRA_MESSAGE));
 
+        labelMessage = findViewById(R.id.show_text_view);
+        enableBtn = findViewById(R.id.enableBtn);
+        enableBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                labelMessage.setVisibility(View.VISIBLE);
+            }
+        });
+        disablebtn = findViewById(R.id.disableBtn);
+        disablebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                labelMessage.setVisibility(View.INVISIBLE);
+            }
+        });
+
         // Show message.
-        ((TextView)findViewById(R.id.show_text_view)).setText(message);
+        labelMessage.setText(message);
     }
 
     /**
      * Creates an {@link Intent} for {@link ShowTextActivity} with the message to be displayed.
+     *
      * @param context the {@link Context} where the {@link Intent} will be used
      * @param message a {@link String} with text to be displayed
      * @return an {@link Intent} used to start {@link ShowTextActivity}

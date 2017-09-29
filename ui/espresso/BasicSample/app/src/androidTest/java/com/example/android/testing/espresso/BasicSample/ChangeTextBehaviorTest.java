@@ -16,18 +16,19 @@
 
 package com.example.android.testing.espresso.BasicSample;
 
+import android.app.Activity;
+import android.support.test.espresso.action.ViewActions;
+import android.support.test.espresso.assertion.ViewAssertions;
+import android.support.test.espresso.matcher.ViewMatchers;
+import android.support.test.filters.LargeTest;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
+import android.test.ActivityInstrumentationTestCase2;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import android.app.Activity;
-import android.support.test.espresso.action.ViewActions;
-import android.support.test.espresso.matcher.ViewMatchers;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
-import android.support.test.filters.LargeTest;
-import android.test.ActivityInstrumentationTestCase2;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -78,12 +79,18 @@ public class ChangeTextBehaviorTest {
 
     @Test
     public void changeText_newActivity() {
+
+
         // Type text and then press the button.
         onView(withId(R.id.editTextUserInput)).perform(typeText(STRING_TO_BE_TYPED),
-                closeSoftKeyboard());
+                closeSoftKeyboard())
+                .check(ViewAssertions.matches(ViewMatchers.hasBackground(R.)));
+
+
         onView(withId(R.id.activityChangeTextBtn)).perform(click());
 
         // This view is in a different Activity, no need to tell Espresso.
         onView(withId(R.id.show_text_view)).check(matches(withText(STRING_TO_BE_TYPED)));
     }
+
 }
